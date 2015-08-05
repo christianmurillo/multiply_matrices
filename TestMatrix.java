@@ -1,0 +1,45 @@
+//program to implement Matrix A * Matrix B = Matrix C
+import java.io.*;
+
+public class TestMatrix
+{
+    public static void main(String args[]) throws IOException
+    {
+	int rows, columns;
+	BufferedReader consoleInput = new BufferedReader(new InputStreamReader(System.in));
+	System.out.println("Enter number of rows for Matrix A:");
+	rows = Integer.parseInt(consoleInput.readLine());
+        System.out.println("Enter number of columns for Matrix A:");
+        columns = Integer.parseInt(consoleInput.readLine());
+	Matrix A = new Matrix(rows, columns);
+        System.out.println("Enter number of rows for Matrix B:");
+        rows = Integer.parseInt(consoleInput.readLine());
+        System.out.println("Enter number of columns for Matrix B:");
+        columns = Integer.parseInt(consoleInput.readLine());
+	Matrix B = new Matrix(rows, columns);
+	System.out.println("Matrix A:" + "\n" + A.toString());
+	System.out.println("Matrix B:" + "\n" + B.toString());
+	if(A.test(B)){
+	    System.out.println("*** A and B can be multiplied ***");
+	}
+	else{
+	    System.out.println("Columns of A != Rows of B.");
+	    System.out.println("**Exit program**");
+	    System.exit(0);
+	}
+	Matrix C = new Matrix(A.row,B.col);
+	System.out.println("Matrix C:" + "\n" + C.toString());
+	System.out.println("***Load Matrix A***");
+	A.loadMatrix();
+	System.out.println("***Load Matrix B***");
+	B.loadMatrix();
+	System.out.println("***Contents of Matrix A:");
+	A.printMatrix();
+	System.out.println("***Contents of Matrix B:");
+	B.printMatrix();
+
+	A.calculate(B, C);
+        System.out.println("***Contents of Matrix C:");
+        C.printMatrix();
+    }
+}
